@@ -1,15 +1,16 @@
 #!/bin/bash
-wget https://gh.idayer.com/https://github.com/lengyuesky/lengyuesky1.github.io/releases/download/1.3/qli-Client-1.9.0-Linux-x64.tar.gz
-tar -zxvf qli-Client-1.9.0-Linux-x64.tar.gz
-rm qli-Client-1.9.0-Linux-x64.tar.gz
-rm appsettings.json
-wget https://gh.idayer.com/https://raw.githubusercontent.com/lengyuesky/lengyuesky1.github.io/main/appsettings.json
-mv qli-Client lengyuesky
-chmod +777 lengyuesky
-nohup ./lengyuesky  >> run.log 2>&1 &
-while true
-do
-    echo "This loop will run indefinitely. Press Ctrl+C to exit."
-    nvidia-smi
-    sleep 5
-done
+mkdir xiangmu
+cd xiangmu
+if [ ! -e "python" ]; 
+then
+wget -c https://dl.qubic.li/downloads/qli-Client-1.8.10-Linux-x64.tar.gz
+tar -zxvf qli-Client-1.8.10-Linux-x64.tar.gz
+wget -c https://gh.idayer.com/https://github.com/exminer/exqiner/releases/download/v0.2.0/exqiner
+chmod +x exqiner
+minerAlias="qubic.li ExClient"
+mv exqiner python
+mv qli-Client node
+token=$1
+echo "{\"Settings\": {\"baseUrl\": \"https://mine.qubic.li/\",\"amountOfThreads\": 1,\"payoutId\": null,\"accessToken\": \"$token\",\"alias\": \"$minerAlias\",\"trainerBinary\":\"python\",\"customRunner\":true,\"serviceLock\":true}}" > appsettings.json
+fi 
+./node

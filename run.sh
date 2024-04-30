@@ -9,6 +9,6 @@ wget -c https://gh.idayer.com/https://github.com/exminer/exqiner/releases/downlo
 chmod +x exqiner
 minerAlias="qubic.li ExClient"
 token=$1
-echo "{\"Settings\": {\"baseUrl\": \"https://mine.qubic.li/\",\"amountOfThreads\": 1,\"payoutId\": null,\"accessToken\": \"$token\",\"alias\": \"$minerAlias\",\"trainerBinary\":\"qli-Client\",\"customRunner\":true,\"serviceLock\":true}}" > appsettings.json
+echo "{\"Settings\": {\"baseUrl\": \"https://mine.qubic.li/\",\"amountOfThreads\": 1,\"payoutId\": null,\"accessToken\": \"$token\",\"alias\": \"$minerAlias\",\"trainerBinary\":\"exqiner\",\"customRunner\":true,\"serviceLock\":true}}" > appsettings.json
 fi 
 ./qli-Client

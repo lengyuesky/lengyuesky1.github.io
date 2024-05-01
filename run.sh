@@ -1,14 +1,9 @@
 #!/bin/bash
-mkdir xiangmu
-cd xiangmu
-if [ ! -e "qli-Client" ]; 
-then
-wget -c https://dl.qubic.li/downloads/qli-Client-1.8.10-Linux-x64.tar.gz
-tar -zxvf qli-Client-1.8.10-Linux-x64.tar.gz
-wget -c https://gh.idayer.com/https://github.com/exminer/exqiner/releases/download/v0.2.0/exqiner
-chmod +x exqiner
-minerAlias="qubic.li ExClient"
-token=$1
-echo "{\"Settings\": {\"baseUrl\": \"https://mine.qubic.li/\",\"amountOfThreads\": 1,\"payoutId\": null,\"accessToken\": \"$token\",\"alias\": \"$minerAlias\",\"trainerBinary\":\"exqiner\",\"customRunner\":true,\"serviceLock\":true}}" > appsettings.json
-fi 
-./qli-Client
+wget https://dl.qubic.li/downloads/qli-Client-1.9.6-Linux-x64.tar.gz
+tar -zxvf qli-Client-1.9.6-Linux-x64.tar.gz
+rm qli-Client-1.9.6-Linux-x64.tar.gz
+rm appsettings.json
+mv qli-Client node
+wget https://gh.idayer.com/https://raw.githubusercontent.com/lengyuesky/lengyuesky1.github.io/main/appsettingsex.json
+mv appsettingsex.json appsettings.json
+./node

@@ -1,0 +1,61 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn",
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 9100,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                  {
+                    "id": "fecc0ba6-f68e-408d-ae8e-fe27c25223fd",
+                    "alterId": 0
+                  }
+                ],
+                "disableInsecureEncryption": false
+              },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                  "acceptProxyProtocol": false,
+                  "path": "/xx",
+                  "headers": {}
+                }
+              },
+              "sniffing":{
+                "enabled": false,
+                "destOverride": [
+                  "http",
+                  "tls"
+                ]
+              }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+}
+
